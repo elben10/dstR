@@ -1,6 +1,6 @@
 #' @import httr
 #' @importFrom jsonlite fromJSON
-#' @importFrom tibble tibble
+#' @importFrom tibble as_tibble
 "_PACKAGE"
 
 
