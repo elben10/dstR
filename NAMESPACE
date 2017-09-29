@@ -2,6 +2,7 @@
 
 export(dst_cache)
 export(dst_subject)
+export(dst_tables)
 import(httr)
 importFrom(jsonlite,fromJSON)
 importFrom(tibble,as_tibble)

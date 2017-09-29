@@ -15,3 +15,21 @@ lang_helper <- function(lang) {
 
   lang
 }
+
+subjects_helper <- function(subjects) {
+  if (!is.character(subjects) & !is.null(subjects)) {
+    rlang::abort("subjects need to be a character vector")
+  }
+  all_digit <- all(purrr::map_lgl(subjects, stringr::str_detect, "^[:digit:]{0,}$"))
+
+  if (!all_digit) {
+    rlang::abort("subjects need to be character vector only containing digits")
+  }
+
+  if (!is.null(subjects)) {
+    subjects <- stringr::str_c(subjects, collapse = ",")
+  }
+
+  subjects
+}
+

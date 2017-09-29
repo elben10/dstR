@@ -16,4 +16,7 @@ Imports:
     httr,
     jsonlite,
     rlang,
-    tibble
+    tibble,
+    lubridate,
+    stringr,
+    purrr
