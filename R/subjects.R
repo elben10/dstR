@@ -1,5 +1,8 @@
 #' @export
 dst_subject <- function(subject = NULL, lang = NULL) {
+  if ((!is.null(subject) & length(subject) > 1) | (!is.character(subject) & !is.null(subject))) {
+    rlang::abort("subject need to be character vector of length 1")
+  }
   lang <- lang_helper(lang = lang)
 
   base_url <- "http://api.statbank.dk"
