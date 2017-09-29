@@ -1,5 +1,5 @@
 #' @export
-dst_tables <- function(subjects = NULL, lang = NULL) {
+dst_tables <- function(subjects = NULL, lang = NULL, date_formatted = TRUE) {
   lang <- lang_helper(lang = lang)
   subjects <- subjects_helper(subjects = subjects)
 
@@ -23,10 +23,21 @@ dst_tables <- function(subjects = NULL, lang = NULL) {
     )
   }
 
-  tibble::tibble(id = parsed[[1]],
-                 text = parsed[[2]],
-                 unit = parsed[[3]],
-                 updated = lubridate::parse_date_time(parsed[[4]], "YmdHMS"),
-                 start = parsed[[5]],
-                 end = parsed[[6]])
+  if (date_formatted) {
+    tibble::tibble(id = parsed[[1]],
+                   text = parsed[[2]],
+                   unit = parsed[[3]],
+                   updated = lubridate::parse_date_time(parsed[[4]], "YmdHMS"),
+                   first_start = date_helper(parsed[[5]]),
+                   first_end = date_helper(parsed[[5]], FALSE),
+                   last_start = date_helper(parsed[[6]]),
+                   last_end = date_helper(parsed[[6]], FALSE))
+  } else {
+    tibble::tibble(id = parsed[[1]],
+                   text = parsed[[2]],
+                   unit = parsed[[3]],
+                   updated = lubridate::parse_date_time(parsed[[4]], "YmdHMS"),
+                   first = parsed[[5]],
+                   last = parsed[[5]])
+  }
 }
