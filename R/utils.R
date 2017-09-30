@@ -88,7 +88,7 @@ date_helper <- function(x, start = TRUE) {
   if (!all(purrr::map_lgl(x, str_detect, pattern))) {
     return(x)
   } else
-    as_date(do.call("c", map(x, date_parse_helper)))
+    as_date(do.call("c", purrr::map(x, date_parse_helper)))
 
 
 }
